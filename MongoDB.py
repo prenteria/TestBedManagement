@@ -47,7 +47,7 @@ def main():
         selection = raw_input('\nSelect 1 to insert, 2 to update, 3 to read, 4 to delete\n')
     
         if selection == '1':
-		   name = raw_input('Enter User name :')
+           name = raw_input('Enter User name :')
            email = raw_input('Enter email :')
            password = raw_input('Enter password :')
            orginization = raw_input('Enter orginization :')
