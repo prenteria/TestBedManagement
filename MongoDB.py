@@ -1,9 +1,10 @@
 from pymongo import MongoClient
+import re
 
 # creating connectioons for communicating with Mongo DB
 client = MongoClient('localhost')#27017
 db = client.local
-print '\n sap sap \n'
+
 
 def insertUser(name, email, password, orginization, skill_level, user_type):
     try:
@@ -15,14 +16,19 @@ def insertUser(name, email, password, orginization, skill_level, user_type):
             "email":email,
             "password":password,
             "orginization":orginization,
-		    "skill_level":skill_level,
+	    "skill_level":skill_level,
             "user_type":user_type
             })
-        print '\nInserted data successfully\n'
+        if not checkName(name):
+            print 'INVALID'
+        #print '\nInserted data successfully\n'
     
     except Exception, e:
         print str(e)
 
+def checkName(name):
+    if re.match("^[a-zA-Z0-9_.-]+$", name):
+        raise Exception('Invalid letters/numbers')
 
 def deleteUser(name):
     try:
@@ -38,6 +44,7 @@ def deleteUser(name):
 	    print str(e)
 
 
+
 #def insertWorkshopGroup(name, description, type, skill_level, published_date, session_type):
 #def deleteWorkshopGroup(name):
 #def updateWorkshopGroup(name):
@@ -45,7 +52,6 @@ def deleteUser(name):
 #def insertWorkshopUnit(name, description, type, skill_level, published_date, session_type, connection_string_type):
 #def deleteWorkshopUnit(name):
 #def updateWorkshopUnit(name):
-
 
 def main():
     
