@@ -38,13 +38,13 @@ def deleteUser(name):
 	    print str(e)
 
 
-def insertWorkshopGroup(name, description, type, skill_level, published_date, session_type):
-def deleteWorkshopGroup(name):
-def updateWorkshopGroup(name):
+#def insertWorkshopGroup(name, description, type, skill_level, published_date, session_type):
+#def deleteWorkshopGroup(name):
+#def updateWorkshopGroup(name):
 
-def insertWorkshopUnit(name, description, type, skill_level, published_date, session_type, connection_string_type):
-def deleteWorkshopUnit(name):
-def updateWorkshopUnit(name):
+#def insertWorkshopUnit(name, description, type, skill_level, published_date, session_type, connection_string_type):
+#def deleteWorkshopUnit(name):
+#def updateWorkshopUnit(name):
 
 
 def main():
