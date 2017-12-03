@@ -7,12 +7,6 @@ print '\n sap sap \n'
 
 def insertUser(name, email, password, orginization, skill_level, user_type):
     try:
-        name = raw_input('Enter User name :')
-        email = raw_input('Enter email :')
-        password = raw_input('Enter password :')
-        orginization = raw_input('Enter orginization :')
-        skill_level = raw_input('Enter skill_level :')
-        user_type = raw_input('Enter user_type :')
         
         print '\Inserting: \n'
         db.User.insert_one(
@@ -30,10 +24,13 @@ def insertUser(name, email, password, orginization, skill_level, user_type):
         print str(e)
 
 
-def deleteUser():
+def deleteUser(name):
     try:
-	    criteria = raw_input('\nEnter users name to delete\n')
-	    db.User.delete_many({"name":criteria})
+	
+	    db.User.delete_many({"name":name})
+
+            if not name:
+                raise Exception('Name cannot be empty')
 		
 	    print '\nDeletion successful\n'
 		
@@ -43,23 +40,57 @@ def deleteUser():
 def main():
     
     while(1):
-    # chossing option to do CRUD operations
+    # choosing option to do CRUD operations
         selection = raw_input('\nSelect 1 to insert, 2 to update, 3 to read, 4 to delete\n')
+		  
     
         if selection == '1':
-           name = raw_input('Enter User name :')
-           email = raw_input('Enter email :')
-           password = raw_input('Enter password :')
-           orginization = raw_input('Enter orginization :')
-           skill_level = raw_input('Enter skill_level :')
-           user_type = raw_input('Enter user_type :')
-           insertUser(name, email, password, orginization, skill_level, user_type)
+            name = raw_input('Enter User name :')
+        
+    	    if not name:
+                raise Exception('Name cannot be empty')
+		       
+
+            email = raw_input('Enter email :')
+
+            if not email:
+                raise Exception('Email cannot be empty')
+                      
+
+            password = raw_input('Enter password :')
+
+            if not password:
+                raise Exception('Password cannot be empty')
+                      
+
+            orginization = raw_input('Enter orginization :')
+         
+            if not orginization:
+                raise Exception('Orginization cannot be empty')
+                      
+
+            skill_level = raw_input('Enter skill level :')
+
+            if not skill_level:
+                raise Exception('Skill level cannot be empty')
+                      
+
+            user_type = raw_input('Enter user_type :')
+
+            if not user_type:
+                raise Exception('User type cannot be empty')
+                      
+
+            insertUser(name, email, password, orginization, skill_level, user_type)
+            
         elif selection == '2':
             update()
         elif selection == '3':
             read()
         elif selection == '4':
-            deleteUser()
+		
+            name = raw_input('Enter name to delete :')
+            deleteUser(name)
         else:
             print '\n INVALID SELECTION \n'
 			
